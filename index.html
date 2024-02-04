@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="logo1.jpg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Amiruddin Siddiqui's Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="background-container">
+    <div id="header">
+        <div class="container">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <nav>
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                
+                    <li><a href="#about">Leave A Message</a></li>
+                </ul>
+
+            </nav>
+            <div class="text-box">
+                <p>I'M</p>
+                <h1>Amiruddin</h1>
+                <h3>Passionate about Computer Science & Technology</h3>
+                <span>You can explore more about my life here.</span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+                <div class="social-menu">
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+      
+   
+                    </ul>
+                </div>     
+</div>
+<!---------about----------->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/mauy.jpg" class="about-image">
+        
+            </div>
+
+           
+            <div class="about-col-2">
+                <h1><span>About Me</span></h1>
+                <h2>Hi there! I'm an 18-year-old with a deep passion for technology. I'm constantly fascinated by the rapid advancements in this field and enjoy staying up-to-date with the latest trends. When I'm not exploring the wonders of technology, you'll often find me indulging in my love for traveling. There's something magical about discovering new places, and creating unforgettable memories. In my downtime, I find solace in playing video games. It's not just a hobby for me; it's a way to unwind, challenge myself, and enter different virtual worlds. As an introvert, I value my alone time, but I also cherish the company of my close friends. Spending quality time with them brings me happiness and strengthens our bond.</h2>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="contact-right">
+        <form name="submit-to-google-sheet">
+            <input type="text" name="honeypot" id="honeypot" style="display:none;">
+
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="Message" rows="6" placeholder="Leave Your Message"></textarea>
+            <button type="submit" class="btn btn2">Submit</button>
+        </form>
+        <span id="msg"></span>
+    </div>
+    <div class="copyright">
+        <p>copyright © Amiruddin. Personal Website</p>
+    </div>
+
+</div>
+<script>
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxyE6JiO3WbZQbHLnuijCBYRdME4kBUFr22quCc1UMQCKAV6m4AnKoDQbnVNj9HHWPL/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById("msg");
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const inputs = form.querySelectorAll("input, textarea");
+      for (const input of inputs) {
+        input.value = escapeHtml(input.value);
+      }
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          msg.innerText = "Message sent successfully";
+          setTimeout(function () {
+            msg.innerText = "";
+          }, 5000);
+          form.reset();
+        })
+        .catch(error => console.error('Error!', error.message));
+    });
+</script>
+
+
+
+
+</body>
+</html>
